@@ -7,7 +7,7 @@ public class Main {
 
         System.out.println("Калькулятор для двух целых чисел (типа integer). Может делать сложение, вычитание, умножение или деление по вашему выбору.");
         Scanner scanner = new Scanner(System.in);
-        String Operation, DesireToLeave;
+        char Operation, DesireToLeave;
         int a,b;
 
         do{
@@ -17,9 +17,9 @@ public class Main {
                 System.out.println("\"-\" - вычитание (из первого вычесть второе)");
                 System.out.println("\"*\" - умножение");
                 System.out.println("\"/\" - деление (первое разделить на второе)");
-                Operation = scanner.next();
+                Operation = scanner.next().charAt(0);
 
-                if (Operation.equals("+") | Operation.equals("-") | Operation.equals("*") | Operation.equals("/")){break;}else {
+                if (Operation == '+' | Operation == '-' | Operation == '*' | Operation == '/'){break;}else {
                     System.out.println("Операция не распознана");
                 }
             }while(true);
@@ -31,25 +31,25 @@ public class Main {
             b = scanner.nextInt();
 
             switch (Operation) {
-                case "+":
+                case '+':
                     System.out.printf("%d + %d = %d \n", a, b, MySum(a, b));
                     if ((a > 1073000000) | (b > 1073000000) | (a < -1073000000) | (b < -1073000000)) {
                         System.out.println("Для больших целых чисел выведенный результат может быть не корректным (возможен выход за диапазон и обрезка данных).");
                     }
                     break;
-                case "-":
+                case '-':
                     System.out.printf("%d - %d = %d \n", a, b, MySubtraction(a, b));
                     if ((a > 1073000000) | (b > 1073000000) | (a < -1073000000) | (b < -1073000000)) {
                         System.out.println("Для больших целых чисел выведенный результат может быть не корректным (возможен выход за диапазон и обрезка данных).");
                     }
                     break;
-                case "*":
+                case '*':
                     System.out.printf("%d * %d = %d \n", a, b, MyMultiplication(a, b));
                     if ((a > 46340) | (a < -46340) | (b > 46340) | (b < -46340)) {
                         System.out.println("Для больших целых чисел выведенный результат может быть не корректным (возможен выход за диапазон и обрезка данных).");
                     }
                     break;
-                case "/":
+                case '/':
                     if (b == 0) {
                         System.out.println("Операция деления на 0 не разрешена.");
                     } else if (a % b != 0) {
@@ -64,10 +64,10 @@ public class Main {
             }
 
             System.out.println("Если хотите выйти, введите \"y\":");
-            DesireToLeave = scanner.next();
+            DesireToLeave = scanner.next().charAt(0);
 
 
-        }while (!DesireToLeave.equals("y"));
+        }while (DesireToLeave != 'y');
 
         scanner.close();
         System.out.println("Программа завершена.");
